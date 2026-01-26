@@ -1,9 +1,8 @@
-const express = require("express");
+const createApp = require("./app");
+const config = require("./config");
 
-const app = express();
-app.use("/", async (req, res) => {
-  res.send("hello world from nae");
-});
-app.listen(3000, () => {
-  console.log("listening on port 3000");
+const app = createApp();
+
+app.listen(config.port, () => {
+  console.log(`listening on port ${config.port}`);
 });

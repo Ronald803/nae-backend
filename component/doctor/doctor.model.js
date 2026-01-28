@@ -31,6 +31,7 @@ const mySchema = new Schema({
   password: {
     type: String,
     required: true,
+    select: false,
   },
   rol: {
     type: String,

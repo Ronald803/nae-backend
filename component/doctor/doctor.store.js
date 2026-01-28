@@ -5,9 +5,22 @@ const add = async (doctor) => {
   const doctorSaved = await newDoctor.save();
   return doctorSaved;
 };
-const list = async (filter, exclude = "") => {
-  const doctors = await DoctorModel.find(filter, exclude).populate("specialty");
+const list = async (filter) => {
+  const doctors = await DoctorModel.find(filter).populate("specialty");
   return doctors;
 };
-
-module.exports = { add, list };
+const update = async (doctorId, body) => {
+  const updatedDoctor = await DoctorModel.findByIdAndUpdate(
+    doctorId,
+    {
+      ...body,
+      status: new Date(),
+    },
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+  return updatedDoctor;
+};
+module.exports = { add, list, update };

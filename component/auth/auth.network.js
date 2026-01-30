@@ -8,7 +8,6 @@ router.post("/login", async (req, res) => {
     const response = await authController.login(req.body);
     reply.successfulPost(req, res, response);
   } catch (error) {
-    console.log(error);
     reply.error(req, res, error);
   }
 });

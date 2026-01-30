@@ -7,7 +7,7 @@ const login = async ({ email, password }) => {
     throw new Error("Incomplete Data");
   }
   //____________________ checking email exists _________________
-  const user = await storeDoctor.list({ email });
+  const user = await storeDoctor.getDoctorToAuth({ email });
   if (user.length < 1) {
     throw new Error("Wrong information");
   }

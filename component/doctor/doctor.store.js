@@ -23,4 +23,9 @@ const update = async (doctorId, body) => {
   );
   return updatedDoctor;
 };
-module.exports = { add, list, update };
+
+const getDoctorToAuth = async (email) => {
+  const doctors = await DoctorModel.find(email).select("+password");
+  return doctors;
+};
+module.exports = { add, list, update, getDoctorToAuth };

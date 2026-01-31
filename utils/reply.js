@@ -14,7 +14,7 @@ exports.error = (req, res, details) => {
   res.status(500).send({
     message: "Something went wrong",
     body: {
-      error: details,
+      error: details.message,
     },
   });
 };

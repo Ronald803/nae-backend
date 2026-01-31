@@ -4,7 +4,7 @@ const doctorStore = require("./doctor.store");
 const addDoctor = async (newDoctor) => {
   const { name, specialty, phone, address, email, password } = newDoctor;
   if (!name || !specialty || !phone || !address || !email || !password) {
-    throw new Error("Datos incompletos");
+    throw new Error("Incomplete Data");
   }
   //___________________encrypting password________________
   const salt = bcryptjs.genSaltSync();
@@ -13,11 +13,12 @@ const addDoctor = async (newDoctor) => {
   const doctor = {
     ...newDoctor,
     password: encryptPassword,
-    status: "active",
+    status: "created",
     rol: "doctor",
   };
   const doctorSaved = await doctorStore.add(doctor);
-  return doctorSaved;
+  const { name: nameSaved } = doctorSaved;
+  return { name: nameSaved };
 };
 
 const getDoctors = async (filter) => {

@@ -12,7 +12,7 @@ router.post("/", validationJwtRol(), async (req, res) => {
     reply.error(req, res, error);
   }
 });
-router.get("/", validationJwtRol(), async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const specialties = await specialtyController.getSpecialties(req.body);
     reply.successfulGet(req, res, specialties);

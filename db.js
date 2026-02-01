@@ -1,12 +1,28 @@
-const db = require("mongoose");
+const mongoose = require("mongoose");
+const config = require("./config");
 
-db.Promise = global.Promise;
+let cached = global.mongoose;
 
-async function connectDB(url) {
-  await db
-    .connect(url)
-    .then(() => console.log("[db] Successfully conected"))
-    .catch((e) => console.log("[db]", e, url));
+if (!cached) {
+  cached = global.mongoose = {
+    conn: null,
+    promise: null,
+  };
 }
+
+const connectDB = async () => {
+  if (cached.conn) {
+    return cached.conn;
+  }
+
+  if (!cached.promise) {
+    cached.promise = mongoose.connect(config.dbUrl, {
+      bufferCommands: false,
+    });
+  }
+
+  cached.conn = await cached.promise;
+  return cached.conn;
+};
 
 module.exports = connectDB;

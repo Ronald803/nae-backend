@@ -1,3 +1,5 @@
+const dbMiddleware = require("./utils/dbMiddleware");
+
 const authNetwork = require("./component/auth/auth.network");
 const appointmentNetwork = require("./component/appointment/appointment.network");
 const specialtyNetwork = require("./component/specialty/specialty.network");
@@ -5,6 +7,8 @@ const staffNetwork = require("./component/doctor/doctor.network");
 const patientNetwork = require("./component/patient/patient.network");
 
 const routes = (server) => {
+  server.use("/api", dbMiddleware);
+
   server.use("/api/auth", authNetwork);
   server.use("/api/appointment", appointmentNetwork);
   server.use("/api/patient", patientNetwork);

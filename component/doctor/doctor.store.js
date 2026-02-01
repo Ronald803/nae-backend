@@ -14,7 +14,6 @@ const update = async (doctorId, body) => {
     doctorId,
     {
       ...body,
-      status: new Date(),
     },
     {
       new: true,

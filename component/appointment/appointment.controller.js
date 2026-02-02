@@ -6,7 +6,6 @@ const addAppointment = async (newAppointment) => {
   if (!patient || !doctor || !startHour || !day) {
     throw new Error("Datos incompletos");
   }
-  console.log(user);
   const appointment = {
     patient,
     doctor,

@@ -15,6 +15,7 @@ const addDoctor = async (newDoctor) => {
     password: encryptPassword,
     status: "created",
     rol: "doctor",
+    photoUrl: "123",
   };
   const doctorSaved = await doctorStore.add(doctor);
   const { name: nameSaved } = doctorSaved;

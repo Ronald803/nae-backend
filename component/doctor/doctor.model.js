@@ -38,6 +38,12 @@ const mySchema = new Schema(
       type: String,
       required: true,
     },
+    photoUrl: {
+      type: String,
+    },
+    birthday: {
+      type: String,
+    },
   },
   {
     timestamps: true,

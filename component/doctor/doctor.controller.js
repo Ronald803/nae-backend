@@ -27,10 +27,20 @@ const getDoctors = async (filter) => {
   return doctors;
 };
 
+const getDoctorsWithPatients = async (filter = {}) => {
+  const doctors = await doctorStore.listWithPatients(filter);
+  return doctors;
+};
+
 const updateDoctors = async (doctorId, body) => {
   const { _id, status, rol, validProps } = body;
   const doctorUpdated = await doctorStore.update(doctorId, validProps);
   return doctorUpdated;
 };
 
-module.exports = { addDoctor, getDoctors, updateDoctors };
+module.exports = {
+  addDoctor,
+  getDoctors,
+  updateDoctors,
+  getDoctorsWithPatients,
+};

@@ -16,4 +16,9 @@ const getPatients = async (filter) => {
   return patients;
 };
 
-module.exports = { addPatient, getPatients };
+const getPatientsWithTreatments = async (filter) => {
+  const patients = await patientStore.listPatientsWithTreatments(filter);
+  return patients;
+};
+
+module.exports = { addPatient, getPatients, getPatientsWithTreatments };

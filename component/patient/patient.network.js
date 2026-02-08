@@ -6,7 +6,7 @@ const validationJwtRol = require("../../utils/validationJwtRol");
 
 router.get("/", validationJwtRol(), async (req, res) => {
   try {
-    const patients = await patientController.getPatients();
+    const patients = await patientController.getPatientsWithTreatments();
     reply.successfulGet(req, res, patients);
   } catch (error) {
     reply.error(req, res, error);

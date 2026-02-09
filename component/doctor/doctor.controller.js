@@ -38,9 +38,13 @@ const updateDoctors = async (doctorId, body) => {
   return doctorUpdated;
 };
 
+const getDoctorsLoginData = async () => {
+  return await doctorStore.listOnlyLoginData();
+};
 module.exports = {
   addDoctor,
   getDoctors,
   updateDoctors,
   getDoctorsWithPatients,
+  getDoctorsLoginData,
 };

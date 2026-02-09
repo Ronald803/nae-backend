@@ -10,6 +10,17 @@ const list = async (filter) => {
   return doctors;
 };
 
+const listOnlyLoginData = async () => {
+  const doctors = await DoctorModel.find({
+    rol: { $nin: ["superadmin"] },
+  }).select({
+    email: 1,
+    photoUrl: 1,
+    _id: 0,
+  });
+  return doctors;
+};
+
 const listWithPatients = async (filter = {}) => {
   return DoctorModel.aggregate([
     { $match: filter },
@@ -102,4 +113,11 @@ const getDoctorToAuth = async (email) => {
   const doctors = await DoctorModel.find(email).select("+password");
   return doctors;
 };
-module.exports = { add, list, update, getDoctorToAuth, listWithPatients };
+module.exports = {
+  add,
+  list,
+  update,
+  getDoctorToAuth,
+  listWithPatients,
+  listOnlyLoginData,
+};

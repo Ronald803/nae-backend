@@ -4,6 +4,14 @@ const doctorController = require("./doctor.controller");
 const reply = require("../../utils/reply");
 const validationJwtRol = require("../../utils/validationJwtRol");
 
+router.get("/login", async (req, res) => {
+  try {
+    const doctorsLoginData = await doctorController.getDoctorsLoginData();
+    reply.successfulGet(req, res, doctorsLoginData);
+  } catch (error) {
+    reply.error(req, res, error);
+  }
+});
 router.get("/", validationJwtRol(), async (req, res) => {
   try {
     const doctors = await doctorController.getDoctorsWithPatients();

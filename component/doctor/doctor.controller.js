@@ -33,8 +33,15 @@ const getDoctorsWithPatients = async (filter = {}) => {
 };
 
 const updateDoctors = async (doctorId, body) => {
-  const { _id, status, rol, validProps } = body;
-  const doctorUpdated = await doctorStore.update(doctorId, validProps);
+  const { _id, status, rol, password, ...validProps } = body;
+  let updateData = { ...validProps };
+  if (password) {
+    const salt = bcryptjs.genSaltSync();
+    const encryptPassword = bcryptjs.hashSync(password, salt);
+    updateData.password = encryptPassword;
+  }
+
+  const doctorUpdated = await doctorStore.update(doctorId, updateData);
   return doctorUpdated;
 };
 

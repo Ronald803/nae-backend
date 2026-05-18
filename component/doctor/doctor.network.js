@@ -28,15 +28,14 @@ router.post("/", async (req, res) => {
     reply.error(req, res, error);
   }
 });
-router.put("/:id", async (req, res) => {
+router.put("/", validationJwtRol(), async (req, res) => {
   try {
     const doctorUpdated = await doctorController.updateDoctors(
-      req.params.id,
+      req.user.id,
       req.body
     );
     reply.successfulPost(req, res, doctorUpdated);
   } catch (error) {
-    console.log(error);
     reply.error(req, res, error);
   }
 });

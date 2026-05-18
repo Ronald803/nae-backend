@@ -19,6 +19,11 @@ const login = async ({ email, password }) => {
   return {
     name: user.name,
     rol: user.rol,
+    email: user.email,
+    phone: user.phone,
+    address: user.address,
+    photoUrl: user.photoUrl,
+    specialtyId: user.specialty,
     token,
   };
 };

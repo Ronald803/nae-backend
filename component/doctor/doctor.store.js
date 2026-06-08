@@ -88,7 +88,7 @@ const listWithPatients = async (filter = {}) => {
       $project: {
         name: 1,
         phone: 1,
-        specialty: { name: 1 },
+        specialty: { name: 1, _id: 1 },
         patients: "$patients.patient",
       },
     },

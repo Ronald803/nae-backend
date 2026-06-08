@@ -23,7 +23,7 @@ const listPatientsWithTreatments = async (filter = {}) => {
       },
     },
 
-    { $unwind: "$appointments" },
+    { $unwind: { path: "$appointments", preserveNullAndEmptyArrays: true } },
 
     {
       $lookup: {
@@ -33,7 +33,7 @@ const listPatientsWithTreatments = async (filter = {}) => {
         as: "doctor",
       },
     },
-    { $unwind: "$doctor" },
+    { $unwind: { path: "$doctor", preserveNullAndEmptyArrays: true } },
 
     {
       $lookup: {
@@ -43,7 +43,7 @@ const listPatientsWithTreatments = async (filter = {}) => {
         as: "specialty",
       },
     },
-    { $unwind: "$specialty" },
+    { $unwind: { path: "$specialty", preserveNullAndEmptyArrays: true } },
 
     {
       $lookup: {
